@@ -1,8 +1,8 @@
 import React from "react";
 import "./homepage.css";
 import Navbar from "../navbar/Navbar";
-import vid from "../../assets/background/vid.mp4";
-import { PiArrowRightThin } from "react-icons/pi";
+import vid from "../../assets/background/vid3.mp4";
+import { Link } from "react-scroll";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 const Home = () => {
@@ -25,12 +25,12 @@ const Home = () => {
           <h1>PROGRESSOR CAPITAL</h1>
           <h5>Strategic Capital Advisors & Growth Partners</h5>
           <p>Forging Elite Networks for Visionary Leaders </p>
-          <a href=" ">
+          <Link to ="about" smooth={true} duration={1000}>
             <div className="content-cta">
               <div className="content-cta-icon"><MdOutlineKeyboardDoubleArrowRight className="home-arrow" /></div>
               <div className="content-cta-text"><div>Our Expertise</div></div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
