@@ -1,5 +1,5 @@
 .approach-container {
-    padding: 0 4rem 4rem 4rem;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,13 +26,16 @@
     width: 25%;
     text-wrap: wrap;
 }
-
+.approach-heading
+{
+    margin-bottom: 3rem;
+}
 .approachs-icon
 {
     display: flex;
     align-items: center;
     font-size: 4rem;
-    color: var(--accent-color);
+    color: var(--accent-color-2);
 }
 
 .approachs-content

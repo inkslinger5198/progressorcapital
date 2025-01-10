@@ -1,66 +1,116 @@
-import React from "react";
-import "./services.css";
-import Slider from "react-slick";
-import '../../../node_modules/slick-carousel/slick/slick.css';
-import '../../../node_modules/slick-carousel/slick/slick-theme.css';
-
-const servicesData = [
-  {
-    title: "Capital Formation",
-    description:
-      "Empowering businesses through strategic capital allocation and expert banking services. We connect elite investment funds with institutional capital through strategic introductions and comprehensive investor relations.",
-  },
-  {
-    title: "Growth Equity",
-    description:
-      "We work closely with leadership teams to bring growth strategies to life, providing hands-on support to help businesses grow and succeed.",
-  },
-  {
-    title: "Debt Advisory",
-    description:
-      "Customized financing solutions, including Purchase Order Financing, Asset-Based Lending, Cash Flow-Based Lending, and Venture Debt.",
-  },
-  {
-    title: "Strategic Advisory",
-    description:
-      "Comprehensive services tailored to drive sustainable business success, including corporate restructuring, risk management, and market strategy formulation.",
-  },
-  {
-    title: "Mergers and Acquisitions",
-    description:
-      "Expert guidance for buy-side and sell-side transactions, delivering premium valuations and flawless execution.",
-  },
-];
+import React, { useState, useRef, useEffect } from "react";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa"; // Importing the arrow icons
+import "./services.css"; // Make sure to style accordingly
+import Growth from "../../assets/services/growth.svg";
+import Capital from "../../assets/services/capital.svg";
+import Debt from "../../assets/services/debt.svg";
+import Strategic from "../../assets/services/strategic.svg";
+import Merger from "../../assets/services/mergers.svg";
 
 const Services = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+  const servicesData = [
+    {
+      title: "Growth Equity",
+      icon: Growth,
+      description:
+        "We work closely with leadership teams to bring growth strategies to life, whether through capital raising, mergers and acquisitions, joint ventures, strategic partnerships, or add-on transactions.",
+    },
+    {
+      title: "Capital Formation",
+      icon: Capital,
+      description:
+        "Empowering businesses through strategic capital allocation and expert banking services. We connect elite investment funds with institutional capital.",
+    },
+    {
+      title: "Debt Advisory",
+      icon: Debt,
+      description:
+        "Customized financing solutions designed to meet the unique needs of businesses. Our expertise includes Purchase Order Financing, Asset-Based Lending (ABL), and more.",
+    },
+    {
+      title: "Strategic Advisory",
+      icon: Strategic,
+      description:
+        "Comprehensive advisory services tailored to drive sustainable business success. Our expertise includes corporate restructuring, risk management, and market strategy formulation.",
+    },
+    {
+      title: "Mergers & Acquisitions",
+      icon: Merger,
+      description:
+        "Our senior bankers bring deep industry relationships and strategic expertise to expertly navigate clients through both buy-side and sell-side transactions.",
+    },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === servicesData.length - 3 ? 0 : prevIndex + 1
+    );
   };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? servicesData.length - 3 : prevIndex - 1
+    );
+  };
+
+
+  const serviceRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-slide-down");
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of the element is in view
+    );
+
+    if (serviceRef.current) {
+      observer.observe(serviceRef.current);
+    }
+
+    return () => {
+      if (serviceRef.current) {
+        observer.unobserve(serviceRef.current);
+      }
+    };
+  }, []);
   return (
-    <div className="services-container" id="services">
+    <div className="services-container" id="services" >
       <div className="services-heading">
-        <p className="heading">Profecient Execution/Our Services</p>
+        <p className="heading">Proficient Execution / Our Services</p>
         <p className="text">
           Leveraging unmatched value through profound domain expertise and a
           vast network of global relationships.
         </p>
       </div>
-      <div className="services-carousel">
-        <Slider {...settings}>
-          {servicesData.map((service, index) => (
-            <div className="carousel-item" key={index}>
-              <div className="service-card">
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
-            </div>
-          ))}
-        </Slider> 
-        
+      <div className="carousel-container">
+        <div className="carousel">
+          <div className="services-row" ref={serviceRef}>
+            {servicesData
+              .slice(currentIndex, currentIndex + 3)
+              .map((service, index) => (
+                <div className="service" key={index}>
+                  <div className="service-icon">
+                    <img src={service.icon} />
+                  </div>
+                  <p className="service-title">{service.title}</p>
+                  <p className="line"> </p>
+                  <p className="service-description sub-text">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className="carousel-arrows">
+          <FaArrowLeft className="carousel-arrow left" onClick={prevSlide} />
+          <FaArrowRight className="carousel-arrow right" onClick={nextSlide} />
+        </div>
       </div>
     </div>
   );

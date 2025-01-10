@@ -7,11 +7,15 @@ import "./navbar.css";
 
 const Menu = () => (
   <>
-    <ScrollLink to="services" smooth={true} duration={100} offset={-90}>
+    
+    <ScrollLink to="modern-approach" smooth={true} duration={1000} offset={-90}>
+      <p>Approach</p>
+    </ScrollLink>
+    <ScrollLink to="services" smooth={true} duration={1000} offset={-70}>
       <p>Services</p>
     </ScrollLink>
     <RouterLink to="/profile">
-      <p>Our Profile</p>
+      <p>Profile</p>
     </RouterLink>
     <button
       className="cal-button navbar-laptop"
@@ -26,11 +30,14 @@ const Menu = () => (
 
 const Phone_menu = () => (
   <>
-    <ScrollLink to="services" smooth={true} duration={100} offset={-90}>
+    <ScrollLink to="modern-approach" smooth={true} duration={1000} offset={-90}>
+      <p>Approach</p>
+    </ScrollLink>
+    <ScrollLink to="services" smooth={true} duration={1000} offset={-70}>
       <p>Services</p>
     </ScrollLink>
     <RouterLink to="/profile">
-      <p>Our Profile</p>
+      <p>Profile</p>
     </RouterLink>
     <a
       href="https://cal.com/pravitbh/progressor-capital-growth-session"

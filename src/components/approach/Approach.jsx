@@ -35,8 +35,9 @@ const Approach = () => {
 
   return (
     <div id="approach" ref={ref} className="approach-container">
-      <div className="heading">
-        <p>Our Approach</p>
+      <div className="approach-heading">
+        <p className="heading">TBD</p>
+        <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis, justo in auctor tempor, augue elit vestibulum nunc, eu tincidunt mi justo vel felis. Nullam gravida ligula nec magna tincidunt, in tincidunt nisi feugiat.</p>
       </div>
       <div className="approach-content">
         <div className="approachs">
@@ -47,7 +48,7 @@ const Approach = () => {
             <div className="approachs-number">
               <CountingAnimation
                 targetNumber={50}
-                duration={1000}
+                duration={5000}
                 start={inView}
               />
               <p>+</p>
@@ -65,7 +66,7 @@ const Approach = () => {
             <div className="approachs-number">
               <CountingAnimation
                 targetNumber={15}
-                duration={1000}
+                duration={5000}
                 start={inView}
               />
               <p>+</p>
@@ -81,7 +82,7 @@ const Approach = () => {
             <div className="approachs-number">
               <CountingAnimation
                 targetNumber={25}
-                duration={1000}
+                duration={5000}
                 start={inView}
               />
               <p>+</p>

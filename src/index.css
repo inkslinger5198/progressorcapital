@@ -3,11 +3,12 @@
 :root {
   font-family: 'montserrat', sans-serif;
   font-weight: 400;
-
   color-scheme: light;
+  overflow-x: hidden;
   color: rgba(255, 255, 255, 0.87);
   background-color: rgb(245, 245, 245);
-  --accent-color: #08a883;
+  --accent-color: #fb9339;
+  --accent-color-2: rgb(116, 189, 87);
   --text-color: black;
   --text-alt:white;
 
@@ -16,6 +17,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 .space
 {
