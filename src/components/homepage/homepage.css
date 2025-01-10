@@ -1,11 +1,12 @@
 /* src/components/Home.css */
 
 .home-container {
-    position: absolute;
+    position: relative;
     top: 0;
     width: 100%;
     height: 100vh; /* Full viewport height */
     overflow: hidden;
+    color: var(--text-alt);
   }
   
   .background-video {
@@ -13,7 +14,7 @@
     top: 50%;
     left: 50%;
     min-width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     z-index: -1;
     transform: translate(-50%, -50%);
     object-fit: cover; /* Ensures the video covers the container without distortion */
@@ -21,8 +22,8 @@
   
   .content {
     z-index: 1;
-    color: white; /* Ensure text is visible over the video */
-    height: 100%;
+    color: var(--text-alt); /* Ensure text is visible over the video */
+    height: 100vh;
     /*backdrop-filter: blur(2px); /* Optional: blur the background for better text readability */
     background: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent overlay for better text readability */
   }
@@ -30,12 +31,12 @@
   .home-headings
   {
     z-index: 1;
-    color: white; /* Ensure text is visible over the video */
+    color: var(--text-alt); /* Ensure text is visible over the video */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    height: 90%;
+    height: 100%;
     text-align: left;
     padding: 0rem 4rem;
 
@@ -72,6 +73,7 @@
     margin: 1rem 0;
     height: 2.5rem;
     font-weight: 500;
+
     text-transform: uppercase;
     font-size: 1rem;
     gap: 0.5rem;

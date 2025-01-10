@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
@@ -12,13 +13,14 @@ const Menu = () => (
     <RouterLink to="/profile">
       <p>Our Profile</p>
     </RouterLink>
-    <a
-      href="https://cal.com/your-link"
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      className="cal-button navbar-laptop"
+      data-cal-namespace="progressor-capital-growth-session"
+      data-cal-link="pravitbh/progressor-capital-growth-session"
+      data-cal-config='{"layout":"month_view"}'
     >
-      Schedule Meeting
-    </a>
+      <p>Schedule Meeting</p>
+    </button>
   </>
 );
 
@@ -31,7 +33,7 @@ const Phone_menu = () => (
       <p>Our Profile</p>
     </RouterLink>
     <a
-      href="https://cal.com/your-link"
+      href="https://cal.com/pravitbh/progressor-capital-growth-session"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -42,8 +44,37 @@ const Phone_menu = () => (
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the user has scrolled past the hero section
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({
+        namespace: "progressor-capital-growth-session",
+      });
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    })();
+  }, []);
+
   return (
-    <div className="navbar">
+    <div className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <a href="/" className="navbar-logo">
         <div className="nav-logo">Progressor Capital</div>
       </a>
@@ -57,7 +88,6 @@ const Navbar = () => {
         {toggleMenu ? (
           <RiCloseLine
             className="close-icon"
-          
             onClick={() => setToggleMenu(false)}
           />
         ) : (
